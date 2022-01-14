@@ -2,7 +2,6 @@
 require_once __DIR__ . '/inc/config.php';
 $title = "MEM-TUBE - Скачайте и пользуйтесь!";
 require_once __DIR__ . '/inc/header.php';
-require_once 'classes/Router.php';
 
 
 $url = key($_GET);
