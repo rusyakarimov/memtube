@@ -7,7 +7,7 @@ class Template
     */
     public function include_template($name, array $data = [])
     {
-        $name = 'templates/' . $name;
+        $name = 'templates/' . $name; //dir of templates
 
         if (!is_readable($name)) {
             return 'Error';
