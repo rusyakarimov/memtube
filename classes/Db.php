@@ -1,5 +1,5 @@
 <?php
-class db {
+class db {//DB CLASS
 
     protected $connection;
 	protected $query;
@@ -128,4 +128,3 @@ class db {
 	}
 
 }
-?>
