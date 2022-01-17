@@ -1,7 +1,7 @@
 <?php
-require_once ROOT_DIR . '/inc/config.php';
+require_once __DIR__ . '/inc/config.php';
 $title = "MEM-TUBE - Скачайте и пользуйтесь!";
-require_once ROOT_DIR . '/inc/header.php';
+require_once __DIR__ . '/inc/header.php';
 
 
 $url = key($_GET);
