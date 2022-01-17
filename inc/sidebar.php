@@ -20,12 +20,20 @@
             $db = new db($dbhost, $dbuser, $dbpass, $dbname) or die("ERROR");
 
             $error = new Messages();
-            $cats = $db->query('SELECT * FROM category ORDER BY `id` DESC LIMIT 5')->fetchAll();
+            $cats = $db->query('SELECT *
+                                FROM category
+                                ORDER BY `id` DESC
+                                LIMIT 7')->fetchAll();
 
-            foreach ($cats as $cat) : ?>
+            foreach ($cats as $cat) :
+                $num_of_cat = $db->query('SELECT * 
+                                          FROM files
+                                          WHERE id_cat = ?', $cat['id'])->numRows(); //nums of mems for this category
+            ?>
+
                 <li class="main-navigation__list-item">
                     <a class="main-navigation__list-item-link" href="#"><?= $cat['name'] ?></a>
-                    <span class="main-navigation__list-item-count">10</span>
+                    <span class="main-navigation__list-item-count"><?= $num_of_cat ?></span>
                 </li>
 
             <? endforeach;  ?>

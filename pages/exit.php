@@ -1,12 +1,9 @@
 <?php
-require_once __DIR__ . '/../inc/config.php';
+require_once ROOT_DIR . '/inc/config.php';
 $title = "MEM-TUBE - Выход из аккаунта";
-require_once __DIR__ . '/../inc/header.php'; ?>
+require_once ROOT_DIR . '/inc/header.php'; ?>
 
 <div class="content">
-    <?php //require_once __DIR__ . '/../inc/sidebar.php'; 
-    ?>
-
     <main class="content__main">
         <?=
         session_unset();
@@ -16,4 +13,4 @@ require_once __DIR__ . '/../inc/header.php'; ?>
 
 </div>
 
-<?php require_once __DIR__ . '/../inc/footer.php'; ?>
+<?php require_once ROOT_DIR . '/inc/footer.php'; ?>

@@ -1,9 +1,8 @@
 <?php
 $title = "Новая категория - ответ";
-
 ?>
 <div class="content">
-    <?php require __DIR__ . '/../inc/sidebar.php'; ?>
+    <?php require_once ROOT_DIR . '/inc/sidebar.php'; ?>
 
     <main class="content__main">
 
@@ -37,4 +36,4 @@ $title = "Новая категория - ответ";
     </main>
 </div>
 
-<?php require __DIR__ . '/../inc/footer.php'; ?>
+<?php require_once ROOT_DIR . '/inc/footer.php'; ?>

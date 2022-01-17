@@ -3,7 +3,7 @@ $title = "Произошла ошибка!";
 ?>
 
 <div class="content">
-    <?php require __DIR__ . '/../inc/sidebar.php';
+    <?php require_once ROOT_DIR . '/inc/sidebar.php';
     ?>
 
     <main class="content__main">
@@ -27,4 +27,4 @@ $title = "Произошла ошибка!";
     </main>
 </div>
 
-<?php require __DIR__ . '/../inc/footer.php'; ?>
+<?php require_once ROOT_DIR . '/inc/footer.php'; ?>

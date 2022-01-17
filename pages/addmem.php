@@ -1,19 +1,17 @@
 <?php
-require_once __DIR__ . '/../inc/config.php';
+require_once ROOT_DIR . '/inc/config.php';
 $title = "Новый мем";
-require_once __DIR__ . '/../inc/header.php';
+require_once ROOT_DIR . '/inc/header.php';
 ?>
 <div class="content">
 
-    <?php require_once __DIR__ . '/../inc/sidebar.php'; ?>
+    <?php require_once ROOT_DIR . '/inc/sidebar.php'; ?>
     <main class="content__main">
 
         <? if ($_SESSION['auth']) : //if auth
 
             $cats = $db->query('SELECT * FROM category ORDER BY `id` DESC')->fetchAll();
         ?>
-
-
 
             <h2 class="content__main-heading"><?= $title ?></h2>
 
@@ -31,13 +29,11 @@ require_once __DIR__ . '/../inc/header.php';
 
                 <div class="form__row">
                     <label class="form__label" for="cat">Выберите категорию<sup>*</sup></label>
-                    <div class="form__input">
-                        <select id="cat" name="cat">
-                            <? foreach ($cats as $cat) : ?>
-                                <option value="<?= $cat['id'] ?>"><?= $cat['name'] ?></option>
-                            <? endforeach;  ?>
-                        </select>
-                    </div>
+                    <select class="form__input form__input--select" id="cat" name="cat">
+                        <? foreach ($cats as $cat) : ?>
+                            <option value="<?= $cat['id'] ?>"><?= $cat['name'] ?></option>
+                        <? endforeach;  ?>
+                    </select>
                 </div>
 
                 <div class="form__row">
@@ -53,6 +49,7 @@ require_once __DIR__ . '/../inc/header.php';
 
 
                 <div class="form__row form__row--controls">
+                    <p class="success-message">Разрешены файлы <b>.3gp</b> <b>.mp4</b> <b>.avi</b></p>
                     <input class="button" type="submit" name="" value="Добавить">
                 </div>
 
@@ -70,4 +67,4 @@ require_once __DIR__ . '/../inc/header.php';
 
 
 
-<?php require_once __DIR__ . '/../inc/footer.php'; ?>
+<?php require_once ROOT_DIR . '/inc/footer.php'; ?>

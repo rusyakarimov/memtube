@@ -1,11 +1,11 @@
 <?php
-require_once __DIR__ . '/../inc/config.php';
+require_once ROOT_DIR . '/inc/config.php';
 $title = "Генератор паролей";
-require_once __DIR__ . '/../inc/header.php';
+require_once ROOT_DIR . '/inc/header.php';
 ?>
 
 <div class="content">
-    <?php require_once __DIR__ . '/../inc/sidebar.php'; ?>
+    <?php require_once ROOT_DIR . '/inc/sidebar.php'; ?>
 
     <main class="content__main">
 
@@ -41,7 +41,7 @@ require_once __DIR__ . '/../inc/header.php';
 
                 if ($_POST['form'] == 1 and $_POST['num'] == 4) {
                     echo '<label class="form__label" for="sum"><b>Ваш пароль</b></label>
-                    <input class="form__input" id ="sum" value=' . rand(1111, 9999) . '>';
+                    <input class="form__input" id ="sum" value=' . rand(1111, 9999) . ' autofocus onfocus="this.select();">';
                     break;
                 }
                 if ($_POST['form'] == 2 and $_POST['num'] == 4) {
@@ -52,12 +52,12 @@ require_once __DIR__ . '/../inc/header.php';
                     $cod = implode("", $cod);
                     $ch = rand(11, 99);
                     echo ' <label class="form__label" for="sum"><b>Ваш пароль</b></label>
-                    <input class="form__input" value=' . $cod . $ch . '>';
+                    <input class="form__input" value=' . $cod . $ch . ' autofocus onfocus="this.select();">';
                 }
 
                 if ($_POST['form'] == 1 and $_POST['num'] == 8) {
                     echo ' <label class="form__label" for="sum"><b>Ваш пароль</b></label>
-                    <input class="form__input" value=' . rand(11111111, 99999999) . '>';
+                    <input class="form__input" value=' . rand(11111111, 99999999) . ' autofocus onfocus="this.select();">';
                 }
 
                 if ($_POST['form'] == 2 and $_POST['num'] == 8) {
@@ -69,12 +69,12 @@ require_once __DIR__ . '/../inc/header.php';
                     $cod = implode("", $cod);
                     $ch = rand(1111, 9999);
                     echo ' <label class="form__label" for="sum"><b>Ваш пароль</b></label>
-                    <input class="form__input" value=' . $cod . $ch . '>';
+                    <input class="form__input" value=' . $cod . $ch . ' autofocus onfocus="this.select();">';
                 }
 
                 if ($_POST['form'] == 1 and $_POST['num'] == 16) {
                     echo ' <label class="form__label" for="sum"><b>Ваш пароль</b></label>
-                    <input class="form__input" value=' . rand(1111111111111111, 9999999999999999) . '>';
+                    <input class="form__input" value=' . rand(1111111111111111, 9999999999999999) . ' autofocus onfocus="this.select();">';
                 }
 
                 if ($_POST['form'] == 2 and $_POST['num'] == 16) {
@@ -86,7 +86,7 @@ require_once __DIR__ . '/../inc/header.php';
                     $cod = implode("", $cod);
                     $ch = rand(11111111, 99999999);
                     echo ' <label class="form__label" for="sum"><b>Ваш пароль</b></label>
-                    <input class="form__input" value=' . $cod . $ch . '>';
+                    <input class="form__input" value=' . $cod . $ch . ' autofocus onfocus="this.select();">';
                 }
 
 
@@ -105,7 +105,7 @@ require_once __DIR__ . '/../inc/header.php';
                     }
                     $sp = implode("", $sp);
                     echo ' <label class="form__label" for="sum"><b>Ваш пароль</b></label>
-                    <input class="form__input" value=' . $cod . $sp . $ch . '>';
+                    <input class="form__input" value=' . $cod . $sp . $ch . ' autofocus onfocus="this.select();">';
                 }
 
 
@@ -125,7 +125,7 @@ require_once __DIR__ . '/../inc/header.php';
                     }
                     $sp = implode("", $sp);
                     echo ' <label class="form__label" for="sum"><b>Ваш пароль</b></label>
-                    <input class="form__input" value=' . $cod . $sp . $ch . '>';
+                    <input class="form__input" value=' . $cod . $sp . $ch . ' autofocus onfocus="this.select();">';
                 }
 
 
@@ -145,7 +145,7 @@ require_once __DIR__ . '/../inc/header.php';
                     }
                     $sp = implode("", $sp);
                     echo ' <label class="form__label" for="sum"><b>Ваш пароль</b></label>
-                    <input class="form__input" value=' . $cod . $sp . $ch . '>';
+                    <input class="form__input" value=' . $cod . $sp . $ch . ' autofocus onfocus="this.select();">';
                 }
 
 
@@ -154,4 +154,4 @@ require_once __DIR__ . '/../inc/header.php';
         ?>
     </main>
 </div>
-<? require_once __DIR__ . '/../inc/footer.php'; ?>
+<? require_once ROOT_DIR . '/inc/footer.php'; ?>

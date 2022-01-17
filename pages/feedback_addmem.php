@@ -4,7 +4,7 @@ $title = "Новый мем - ответ";
 
 ?>
 <div class="content">
-    <?php require __DIR__ . '/../inc/sidebar.php'; ?>
+    <?php require_once ROOT_DIR . '/inc/sidebar.php'; ?>
 
     <main class="content__main">
 
@@ -16,7 +16,7 @@ $title = "Новый мем - ответ";
         $cat = $_POST['cat'];
 
         $file = $_FILES['file']['name'];
-        $uploaddir = './loads/';
+        $uploaddir = ROOT_DIR . '/loads/';
         $uploadfile = $uploaddir . basename($file);
         $type = $_FILES['file']['type'];
 
@@ -69,4 +69,4 @@ $title = "Новый мем - ответ";
     </main>
 </div>
 
-<?php require __DIR__ . '/../inc/footer.php'; ?>
+<?php require ROOT_DIR . '/inc/footer.php'; ?>
