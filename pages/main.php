@@ -15,7 +15,22 @@ require_once ROOT_DIR . '/inc/header.php';
 
             <input class="search-form__submit" type="submit" name="" value="Искать">
         </form>
-
+        <?php
+        $sel = $db->query('SELECT *
+                                FROM files
+                                ORDER BY `id` DESC
+                                LIMIT 10')->fetchAll();
+        foreach ($sel as $item) :
+        ?>
+            <div class="mem-list">
+                <h2><?= $item['name'] ?></h2>
+                <video width="200" heigth="100" controls="controls">
+                    <source src='<?= "./loads/" . $item['file'] ?>' type='video/mp4' />
+                </video>
+                <p class="author"><?= $item['user'] ?> / <?= $item['date']  ?></p>
+                <p><?= $item['desc'] ?></p>
+            </div>
+        <?php endforeach; ?>
     </main>
 
 </div>

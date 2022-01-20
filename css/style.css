@@ -829,3 +829,28 @@ a:focus {
 .welcome__text p {
   margin: 20px 0;
 }
+
+
+.mem-list {
+  display: inline-block;
+  max-width: 25%;
+  box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.mem-list h2{
+  font-size: 17px;
+  white-space: nowrap;
+}
+
+.author{
+  font-size: 15px;
+  color: grey;
+
+}
+
+.mem-list video{
+  max-width: 100%;
+}
