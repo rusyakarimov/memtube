@@ -12,16 +12,11 @@ define("DBNAME", "rusya");
 
 define("ROOT_DIR", $_SERVER['DOCUMENT_ROOT']);
 
-require_once ROOT_DIR . '/classes/Db.php';
-require_once ROOT_DIR . '/classes/User.php';
-require_once ROOT_DIR . '/classes/Messages.php';
-require_once ROOT_DIR . '/classes/Router.php';
-
-$dbhost = 'localhost';
-$dbuser = 'rusya';
-$dbpass = 'rusya';
-$dbname = 'rusya';
+function my_autoloader($class)
+{
+    include 'classes/' . $class . '.php';
+}
+spl_autoload_register('my_autoloader');
 
 $db = new db(DBHOST, DBUSER, DBPASSWORD, DBNAME) or die("ERROR");
-
 $error = new Messages();

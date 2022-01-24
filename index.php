@@ -9,8 +9,10 @@ $url = key($_GET);
 
 $r = new Router();
 $r->addRoute("/", "main.php");
+$r->addRoute("/guest", "guest.php");
 $r->addRoute("/auth", "auth.php");
 $r->addRoute("/reg", "reg.php");
+$r->addRoute("/view", "view.php");
 $r->addRoute("/newcat", "addcat.php");
 $r->addRoute("/addmem", "addmem.php");
 $r->addRoute("/feedback_mem", "feedback_addmem.php");

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
 
+
 </head>
 
 <body>
@@ -35,7 +36,8 @@
                             ?>
                                 <a class="button button--transparent content__side-button" href="/auth">Вход</a>
                                 <a class="button button--transparent content__side-button" href="/reg">Регистрация</a>
-                            <?php endif;
+                            <?php
+                            endif;
                             ?>
 
 
