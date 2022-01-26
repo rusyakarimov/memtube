@@ -9,20 +9,16 @@ require_once ROOT_DIR . '/inc/connect.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 } else {
-    $error->show_error('ID не установлено!');
+    header("Location: error_page");
 }
 
-$count = $db->query('SELECT *
-                             FROM files
-                             WHERE id = ?', $id)->numRows();
+$count = $db->query('SELECT * FROM files WHERE id = ?', $id)->numRows();
 
 if ($count <= 0) {
-    $error->show_error('Данной записи не существует!');
+    header("Location: error_page");
 }
 
-$sel = $db->query('SELECT *
-                                FROM files
-                                WHERE id = ?', $id)->fetchAll();
+$sel = $db->query('SELECT * FROM files WHERE id = ?', $id)->fetchAll();
 ?>
 <?php foreach ($sel as $item) : ?>
     <?php $cat = $db->query('SELECT * FROM category WHERE `id` = ?', $item['id_cat'])->fetchArray(); ?>
@@ -40,7 +36,7 @@ $sel = $db->query('SELECT *
                         <!-- Post meta content-->
                         <div class="text-muted fst-italic mb-2">Добавил <strong><?= $item['user'] ?> </strong>, <?= $item['date']; ?></div>
                         <!-- Post categories-->
-                        <a class="badge bg-secondary text-decoration-none link-light" href="#"><?= $cat['name']; ?></a>
+                        <a class="badge bg-secondary text-decoration-none link-light" href="cat?id=<?= $cat['id']; ?>"><?= $cat['name']; ?></a>
                     </header>
 
                     <div class="ratio ratio-16x9">

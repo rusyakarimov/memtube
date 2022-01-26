@@ -1,22 +1,28 @@
 <?php
 require_once ROOT_DIR . '/inc/config.php';
-$title = "MEM-TUBE - Скачайте и пользуйтесь!";
+$title = "MEM-TUBE: Просмотр категории";
 require_once ROOT_DIR . '/inc/header.php';
 require_once ROOT_DIR . '/inc/connect.php';
-$sel = $db->query('SELECT * FROM files ORDER BY id DESC LIMIT 10')->fetchAll();
-$all_mems = $db->query('SELECT * FROM files')->numRows();
 ?>
 <?php
 if ($_SESSION['auth']) :
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+    } else {
+        header("Location: error_page");
+    }
+    $sel = $db->query('SELECT * FROM files WHERE id_cat = ?', $id)->fetchAll();
+    $count = $db->query('SELECT * FROM files WHERE id_cat = ?', $id)->numRows();
+    $cat = $db->query('SELECT * FROM category WHERE `id` = ?', $id)->fetchArray();
 ?>
     <?php
-    if ($all_mems <= 0) :
+    if ($count <= 0) :
     ?>
         <div class="modal modal-sheet position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSheet">
             <div class="modal-dialog" role="document">
                 <div class="modal-content rounded-6 shadow">
                     <div class="modal-header border-bottom-0">
-                        <h5 class="modal-title">Записи отсутствуют</h5>
+                        <h5 class="modal-title">Записи в категории отсутствуют</h5>
 
                     </div>
                     <div class="modal-body py-0">
@@ -34,21 +40,22 @@ if ($_SESSION['auth']) :
     else :
     ?>
         <main>
-            <!--
             <section class="py-5 text-center container">
                 <div class="row py-lg-5">
                     <div class="col-lg-6 col-md-8 mx-auto">
-                        <h1 class="fw-light">MEM-TUBE</h1>
+                        <h1 class="fw-light"><?= $cat['name']; ?></h1>
+                        <p class="lead text-muted"><?= $cat['desc']; ?></p>
+                        <p>
                     </div>
                 </div>
             </section>
-            -->
+
             <div class="album py-5 bg-light">
                 <div class="container">
 
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                         <?php foreach ($sel as $item) :
-                            $cat = $db->query('SELECT * FROM category WHERE `id` = ?', $item['id_cat'])->fetchArray();
+
                         ?>
                             <div class="col">
                                 <div class="card text-dark bg-light mb-3">
@@ -57,7 +64,7 @@ if ($_SESSION['auth']) :
                                     </a>
                                     <div class="card-body">
                                         <h5 class="card-title"><?= $item['name']; ?></h5>
-                                        <a href="cat?id=<?= $cat['id']; ?>" class="btn btn-primary">
+                                        <a href="" class="btn btn-primary">
                                             <?= $cat['name']; ?>
                                         </a>
                                         <p class="card-text"><?= $item['desc']; ?></p>
@@ -103,20 +110,6 @@ if ($_SESSION['auth']) :
                     </div>
                 </div>
             </div>
-
-            <!-- Pagination-->
-            <nav aria-label="Pagination">
-                <hr class="my-0" />
-                <ul class="pagination justify-content-center my-4">
-                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                </ul>
-            </nav>
 
         </main>
     <?php endif; ?>
