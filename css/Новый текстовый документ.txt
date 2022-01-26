@@ -1,0 +1,55 @@
+<div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <?php
+                if (isset($_GET['page'])) {
+                    $page = $_GET['page'];
+                } else $page = 1;
+
+                $page = intval(@$_GET['page']);
+                $page = (empty($page)) ? 1 : $page;
+                $on_page = 50; //on_page memas
+                $all_mems = $db->query('SELECT * FROM files')->numRows();
+                $pages = ceil($all_mems / $on_page);
+                $art = ($page * $on_page) - $on_page; // определяем, с какой записи нам выводить
+                $sel = $db->query('SELECT *
+                                          FROM files
+                                          ORDER BY `id` DESC
+                                          LIMIT ?,?', $art, $on_page)->fetchAll();
+                if ($all_mems <= 0) {
+                    $error->show_error('На данный момент записей не найдено!');
+                } else {
+                    foreach ($sel as $item) : ?>
+                        <div class="col">
+                            <div class="card shadow-sm">
+
+                                <a href=<?= "/view?id=" . $item['id']; ?>>
+                                    <img class="bd-placeholder-img card-img-top" src="<?= " ./loads/" . $item['pic']; ?>" alt="..." />
+                                </a>
+
+                                <div class="card-body">
+                                    <h2 class="card-title h4">
+                                        <?= $item['name']; ?>
+                                    </h2>
+                                    <p class="card-text"><?= $item['desc']; ?></p>
+                                    <a class="btn btn-primary" href="#!">Read more →</a>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <?php if ($_SESSION['status'] == 1) : ?>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">Ред.</button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">Удалить</button>
+                                            </div>
+                                        <?php endif; ?>
+                                        <small class="text-muted"><?= $item['date']; ?></small>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                <?php
+                    endforeach;
+                } ?>
+
+            </div>
+        </div>
+    </div>

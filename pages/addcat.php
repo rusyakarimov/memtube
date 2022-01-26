@@ -1,41 +1,32 @@
 <?php
-require_once ROOT_DIR . '/inc/config.php';
-$title = "Новая категория";
+$title = "MEM-TUBE: Новая категория";
 require_once ROOT_DIR . '/inc/header.php';
 ?>
-<div class="content">
+<?php
+if (!$_SESSION['auth'] or $_SESSION['status'] != 1) {
+    header("Location: error_page");
+} else {
+?>
 
-    <?php require_once ROOT_DIR . '/inc/sidebar.php'; ?>
-    <main class="content__main">
-        <? if ($_SESSION['status'] == '1') : //if admin 
-        ?>
-            <h2 class="content__main-heading"><?= $title ?></h2>
+    <body class="text-center">
 
-            <form class="form" action="/feedback_cat" method="post" autocomplete="off">
-                <div class="form__row">
-                    <label class="form__label" for="name">Название(100) <sup>*</sup></label>
-                    <input class="form__input" type="text" name="name" id="name" value="" maxlength="100" required placeholder="Введите название категории">
+        <main class="form-signin">
+            <form action="/feedback_cat" method="post">
+
+                <h1 class="h3 mb-3 fw-normal">Новая категория</h1>
+
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Введите логин" maxlength="100" required>
+                    <label for="floatingInput">Название</label>
                 </div>
-                <div class="form__row">
-                    <label class="form__label" for="desc">Описание(300) <sup>*</sup></label>
-                    <input class="form__input" type="text" name="desc" id="desc" value="" maxlength="300" required placeholder="Введите описание категории">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingPassword" name="desc" placeholder="Password" maxlength="300" required>
+                    <label for="floatingPassword">Описание</label>
                 </div>
 
-                <div class="form__row form__row--controls">
-                    <input class="button" type="submit" name="" value="Добавить">
-                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Добавить</button>
             </form>
-
-        <?php
-
-        else :
-            header("Location: error_page");
-        endif;
-
-        ?>
-
-
-    </main>
-</div>
-
-<?php require_once ROOT_DIR . '/inc/footer.php'; ?>
+        </main>
+    <?php
+}
+require_once ROOT_DIR . '/inc/footer.php'; ?>

@@ -25,5 +25,6 @@ CREATE TABLE IF NOT EXISTS `files`(
  `time` text,
  `date` text,
  `user` VARCHAR(100),
+ `pic` TEXT,
  PRIMARY KEY(`id`)
 ) DEFAULT CHARSET=utf8;

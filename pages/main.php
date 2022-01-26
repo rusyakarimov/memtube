@@ -2,78 +2,116 @@
 require_once ROOT_DIR . '/inc/config.php';
 $title = "MEM-TUBE - Скачайте и пользуйтесь!";
 require_once ROOT_DIR . '/inc/header.php';
+require_once ROOT_DIR . '/inc/connect.php';
+$sel = $db->query('SELECT * FROM files ORDER BY id DESC LIMIT 10')->fetchAll();
+$all_mems = $db->query('SELECT * FROM files')->numRows();
 ?>
+<?php
+if ($_SESSION['auth']) :
+?>
+    <?php
+    if ($all_mems <= 0) :
+    ?>
+        <div class="modal modal-sheet position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSheet">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-6 shadow">
+                    <div class="modal-header border-bottom-0">
+                        <h5 class="modal-title">Записи отсутствуют</h5>
 
-<div class="content">
-
-    <?php require_once ROOT_DIR . '/inc/sidebar.php'; ?>
-    <?php if (!$_SESSION['name']) {
-        header("Location: guest");
-    } ?>
-
-    <main class="content__main">
-        <div class="gif-list">
-            <h2 class="mem-list__main-heading"><?= $title ?></h2>
-            <div class="gif-list">
-                <form class="search-form" action="/search" method="post" autocomplete="off">
-                    <input class="search-form__input" type="text" name="" value="" placeholder="Поиск мемов">
-                    <input class="search-form__submit" type="submit" name="" value="Искать">
-                </form>
+                    </div>
+                    <div class="modal-body py-0">
+                        <p>К сожалению, пока никто не добавил мем :( Будьте первым!</p>
+                    </div>
+                    <div class="modal-footer flex-column border-top-0">
+                        <a href="/addmem">
+                            <button type="button" class="btn btn-lg btn-primary w-100 mx-0 mb-2">Добавить мем</button>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <?php
-        if (isset($_GET['page'])) {
-            $page = $_GET['page'];
-        } else $page = 1;
+    <?php
+    else :
+    ?>
+        <main>
+            <div class="album py-5 bg-light">
+                <div class="container">
 
-        $page = intval(@$_GET['page']);
-        $page = (empty($page)) ? 1 : $page;
-        $on_page = 50; //on_page memas
-        $all_mems = $db->query('SELECT * FROM files')->numRows();
-        $pages = ceil($all_mems / $on_page);
-        $art = ($page * $on_page) - $on_page; // определяем, с какой записи нам выводить
-        $sel = $db->query('SELECT *
-                                FROM files
-                                ORDER BY `id` DESC
-                                LIMIT ?,?', $art, $on_page)->fetchAll();
-        ?>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <?php foreach ($sel as $item) :
+                            $cat = $db->query('SELECT * FROM category WHERE `id` = ?', $item['id_cat'])->fetchArray();
+                        ?>
+                            <div class="col">
+                                <div class="card text-dark bg-light mb-3">
+                                    <a href="/view?id=<?= $item['id']; ?>">
+                                        <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="./loads/<?= $item['pic']; ?>">
+                                    </a>
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?= $item['name']; ?></h5>
+                                        <a href="" class="btn btn-primary">
+                                            <?= $cat['name']; ?>
+                                        </a>
+                                        <p class="card-text"><?= $item['desc']; ?></p>
 
-        <ul class="gif-list">
-            <?php
-            if ($all_mems <= 0) {
-                $error->show_error('На данный момент записей не найдено!');
-            } else {
-                foreach ($sel as $item) : ?>
-                    <li class="gif gif-list__item">
-                        <div class="gif__picture">
-                            <video controls="controls">
-                                <source src='<?= "./loads/" . $item['file'] ?>' type='video/mp4' width="200" height="200" />
-                            </video>
-                        </div>
-                        <div class="gif__desctiption">
-                            <h3 class="gif__desctiption-title">
-                                <a href=<?= "/view?id=" . $item['id'] ?>><?= $item['name'] ?></a>
-                            </h3>
+                                        <div class="d-flex justify-content-between align-items-center">
 
-                            <div class="gif__description-data">
-                                <span class="gif__username"><b><?= $item['user'] ?></b></span>
-                                <span class="gif__likes"><b><?= $item['date'] ?></b></span>
+                                            <div class="btn-group">
+                                                <a href="/view?id=<?= $item['id']; ?>">
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary">Смотреть</button>
+                                                </a>
+                                                <?php if ($_SESSION['status'] == 1) : ?>
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ред.</button>
+
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal">Удалить</button>
+
+                                                    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Осторожно!</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p class="mb-5">Вы действительно хотите удалить данную запись?</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <a href="/del_file?id=<?= $item['id']; ?>">
+                                                                        <button type="button" class="btn btn-primary">Да, хочу</button>
+                                                                    </a>
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
+                                            <small class="text-muted">Дата: <?= $item['date']; ?></small>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                <?php endforeach;
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
 
-                /*for ($i = 1; $i <= $pages; $i++) {
-                echo "<a href=/?page=" . $i . "> [" . $i . "] </a>";
-            }*/
-                ?>
-        </ul>
-    <?php } ?>
+            <!-- Pagination-->
+            <nav aria-label="Pagination">
+                <hr class="my-0" />
+                <ul class="pagination justify-content-center my-4">
+                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
+                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">15</a></li>
+                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+                </ul>
+            </nav>
 
-
-    </main>
-
-</div>
-
-
+        </main>
+    <?php endif; ?>
+<?php else :
+    header("Location: guest"); ?>
+<?php endif; ?>
 <?php require_once ROOT_DIR . '/inc/footer.php'; ?>

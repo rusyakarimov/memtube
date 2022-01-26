@@ -2,45 +2,27 @@
 require_once ROOT_DIR . '/inc/config.php';
 $title = "Регистрация-ответ";
 require_once ROOT_DIR . '/inc/header.php';
-?>
-<div class="content">
-    <?php require_once ROOT_DIR . '/inc/sidebar.php'; ?>
+require_once ROOT_DIR . '/inc/connect.php';
 
-    <main class="content__main">
+$login = $_POST['name'];
+$pass = md5($_POST['password']);
+$email = $_POST['email'];
 
-        <h2 class="content__main-heading"><?= $title ?></h2>
+$account = $db->query('SELECT * FROM users WHERE username = ?', $login)->fetchArray(); //запрос к базе
 
-        <?php
-        $login = $_POST['name'];
-        $pass = md5($_POST['password']);
-        $email = $_POST['email'];
+if ($account['username'] == $login or $account['email'] == $email) { //такой юзер есть
+    header("Location: error_page");
+} elseif (!preg_match("/^[a-zA-Z0-9]+$/", $login)) {
+    header("Location: error_page");
+} else {
 
-        $account = $db->query('SELECT * FROM users WHERE username = ?', $login)->fetchArray(); //db query
+    $insert = $db->query('INSERT INTO users (username,password,email) VALUES (?,?,?)', $login, $pass, $email); //запись в бд
+    $insert->affectedRows();
 
-        if ($account['username'] == $login or $account['email'] == $email) {
-            header("Location: error_page");
-        } elseif (!preg_match("/^[a-zA-Z0-9]+$/", $login)) {
-            header("Location: error_page");
-        } else {
-
-            $insert = $db->query('INSERT INTO users (username,password,email) VALUES (?,?,?)', $login, $pass, $email); //insert in DB
-            $insert->affectedRows();
-
-            if ($insert) {
-
-                $error->show_success($_POST['name'] . ' , Вы успешно зарегистрированы!</p>');
-                $_SESSION['auth'] = true; // пометка об авторизации
-                $_SESSION['name'] = $login; //
-                header("Location: /");
-            } else {
-
-                $error->show_error('ОШИБКА ПРИ ОТПРАВКЕ!');
-                header("Location: error_page");
-            }
-        }
-        ?>
-
-    </main>
-</div>
-
-<?php require_once ROOT_DIR . '/inc/footer.php'; ?>
+    if ($insert) {
+        $_SESSION['auth'] = true; // пометка об авторизации
+        header("Location: /");
+    } else {
+        header("Location: error_page");
+    }
+}

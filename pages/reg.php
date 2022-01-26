@@ -1,50 +1,52 @@
-<?php
-require_once ROOT_DIR . '/inc/config.php';
-$title = "Регистрация аккаунта";
-require_once ROOT_DIR . '/inc/header.php';
-?>
-<div class="content">
-    <? if (empty($_SESSION['name'])) : //if !auth 
-    ?>
+<!doctype html>
+<html lang="ru">
 
-        <?php require_once ROOT_DIR . '/inc/sidebar.php'; ?>
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="<?= KEYWORDS ?>" /><!-- Ключевые слова -->
+    <meta name="description" content="<?= DESCRIPTION ?>" /><!-- Описание сайта -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Регистрация - "MEM-TUBE"</title>
 
-        <main class="content__main">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 
-            <h2 class="content__main-heading"><?= $title ?></h2>
+    <!-- Custom styles for this template -->
+    <link href="../css/signin.css" rel="stylesheet">
+</head>
 
-            <form class="form" action="/feedback_reg" method="post" autocomplete="off">
-                <div class="form__row">
-                    <label class="form__label" for="email"><b>E-mail</b> <sup>*</sup></label>
+<body class="text-center">
 
-                    <input class="form__input" type="email" name="email" id="email" value="" placeholder="Введите e-mail" maxlength="45" required>
+    <main class="form-signin">
+        <form action="/feedback_reg" method="post">
+            <a href="/">
+                <img class="mb-4" src="../img/blackLogo.png" alt="" width="72" height="57">
+            </a>
+            <h1 class="h3 mb-3 fw-normal">Регистрация аккаунта</h1>
 
-                </div>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Введите логин" maxlength="45" required>
+                <label for="floatingInput">Логин</label>
+            </div>
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="Введите логин" maxlength="45" required>
+                <label for="floatingInput">E-mail</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" maxlength="100" required>
+                <label for="floatingPassword">Пароль</label>
+            </div>
+            <div class="checkbox mb-3">
+                <label>
+                    <a href="/genpass">Генератор пароля</a>
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Зарегистрироваться</button>
 
-                <div class="form__row">
-                    <label class="form__label" for="password"><b>Пароль</b> <sup>*</sup></label>
+            <p class="mt-5 mb-3 text-muted">&copy; MEM-TUBE, 2022</p>
+        </form>
+    </main>
 
-                    <input class="form__input" type="password" name="password" id="password" value="" placeholder="Введите пароль" maxlength="100" required>
-                </div>
+</body>
 
-                <div class="form__row">
-                    <label class="form__label" for="name"><b>Логин</b> <sup>*</sup></label>
-
-                    <input class="form__input" type="text" name="name" id="name" value="" placeholder="Введите логин" maxlength="45" required>
-                </div>
-
-                <p><a href="/genpass">Генератор пароля</a></p>
-                <input class="button" type="submit" name="" value="Зарегистрироваться">
-
-            </form>
-
-        <?php
-    else :
-        header("Location: error_page");
-    endif;
-        ?>
-        </main>
-</div>
-
-
-<?php require_once ROOT_DIR . '/inc/footer.php'; ?>
+</html>

@@ -1,35 +1,15 @@
-            </div>
-            </div>
+ <script src="../js/bootstrap.bundle.min.js"></script>
+ <!-- Footer-->
+ <footer class="py-5 bg-dark">
+     <div class="container">
+         <p class="m-0 text-center text-white">
+             <a href="/"><img src="../img/logo.png" alt="Логотип MEM-TUBE"></a>
+         </p>
+         <p class="m-0 text-center text-white">
+             &copy; MEM-TUBE, 2022</p>
+     </div>
+ </footer>
 
-            <footer class="main-footer">
-                <div class="container">
-                    <div class="main-footer__copyright">
-                        <p><?= COPYRIGHT ?></p>
+ </body>
 
-                        <p><?= COPYRIGHT_DESC ?></p>
-                    </div>
-
-                    <div class="main-footer__social social">
-
-                        <a class="main-navigation__list-item-link" href="#">О проекте</a>
-
-                    </div>
-                    <div class="main-footer__social social">
-
-                        <a class="main-navigation__list-item-link" href="#">Что-то еще</a>
-
-                    </div>
-
-
-                    <div class="main-footer__developed-by">
-                        <a href="https://fixitgames.ru" target="_blank">
-                            <img src="../img/company-grey.png" alt="FixIt Games" width="80" height="80">
-                        </a>
-                    </div>
-                </div>
-            </footer>
-
-
-            </body>
-
-            </html>
+ </html>

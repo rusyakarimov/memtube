@@ -1,26 +1,76 @@
-<?php
-require_once ROOT_DIR . '/inc/config.php';
-require_once ROOT_DIR . '/inc/header.php';
-?>
+<!doctype html>
+<html lang="en" class="h-100">
 
-<div class="content">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.88.1">
+  <title>Cover Template · Bootstrap v5.1</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/cover/">
 
 
-  <main class="content__main">
 
-    <div class="content">
-      <section class="welcome">
-        <h2 class="welcome__heading">«MEM-TUBE»</h2>
+  <!-- Bootstrap core CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
 
-        <div class="welcome__text">
-          <p>«MEM-TUBE» — это веб приложение для удобного обмена смешными мемами.</p>
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
 
-          <p>После создания аккаунта, пользователь может добалять свои мемы, просматривать и комментировать чужие.</p>
-        </div>
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
 
-        <a class="welcome__button button" href="/reg">Зарегистрироваться</a>
-      </section>
-    </div>
-  </main>
-</div>
-<?php require_once ROOT_DIR . '/inc/footer.php'; ?>
+
+  <!-- Custom styles for this template -->
+  <link href="/css/cover.css" rel="stylesheet">
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+      <div>
+        <h3 class="float-md-start mb-0"><a href="/">
+            <img class="mb-4" src="../img/logo.png" alt="" width="100" height="90">
+          </a></h3>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+          <a class="nav-link" href="/auth">Вход</a>
+          <a class="nav-link" href="/reg">Регистрация</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="px-3">
+      <h1>MEM-TUBE</h1>
+      <p class="lead">Добро пожаловать на сервис обмена смешными мемами.</p>
+      <p class="lead">Для начала работы необходимо войти или зарегистрироваться.</p>
+      <p class="lead">
+        <a href="/auth" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Вход</a>
+      </p>
+      <p class="lead">
+        <a href="/reg" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Регистрация</a>
+      </p>
+    </main>
+
+    <footer class="mt-auto text-white-50">
+      <p>&copy; MEM-TUBE, 2022</p>
+    </footer>
+  </div>
+
+
+
+</body>
+
+</html>

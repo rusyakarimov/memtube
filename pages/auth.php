@@ -1,42 +1,65 @@
-<?php
-require_once ROOT_DIR . '/inc/config.php';
-$title = "Авторизация";
-require_once ROOT_DIR . '/inc/header.php';
+<!doctype html>
+<html lang="ru">
 
-if (empty($_SESSION['name'])) : //if !auth
-?>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Вход - MEM-TUBE</title>
 
-    <div class="content">
-        <?php require_once ROOT_DIR . '/inc/sidebar.php'; ?>
-
-        <main class="content__main">
-
-            <h2 class="content__main-heading"><?= $title ?></h2>
-
-            <form class="form" action="/feedback_auth" method="post" autocomplete="off">
-
-                <div class="form__row">
-                    <label class="form__label" for="name"><b>Логин</b> <sup>*</sup></label>
-
-                    <input class="form__input" type="text" name="name" id="name" value="" placeholder="Введите логин" maxlength="45" required>
-                </div>
-
-                <div class="form__row">
-                    <label class="form__label" for="password"><b>Пароль</b> <sup>*</sup></label>
-
-                    <input class="form__input" type="password" name="password" id="password" value="" placeholder="Введите пароль" maxlength="100" required>
-                </div>
-
-                <input class="button" type="submit" name="" value="Войти">
-            </form>
-
-        <?php
-    else :
-        header("Location: error_page");
-    endif;
-        ?>
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
 
-        </main>
-    </div>
-    <?php require_once ROOT_DIR . '/inc/footer.php'; ?>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="../css/signin.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+
+    <main class="form-signin">
+        <form action="/feedback_auth" method="post">
+            <a href="/">
+                <img class="mb-4" src="../img/blackLogo.png" alt="" width="72" height="57">
+            </a>
+            <h1 class="h3 mb-3 fw-normal">Вход</h1>
+
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Введите логин" maxlength="45" required>
+                <label for="floatingInput">Логин</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" maxlength="100" required>
+                <label for="floatingPassword">Пароль</label>
+            </div>
+            <div class="checkbox mb-3">
+                <label>
+                    <a href="">Забыли пароль?</a>
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
+            <p class="mt-5 mb-3 text-muted">&copy; MEM-TUBE, 2022</p>
+        </form>
+    </main>
+
+</body>
+
+</html>

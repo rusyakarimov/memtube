@@ -1,70 +1,55 @@
 <?php
 require_once ROOT_DIR . '/inc/config.php';
-$title = "Новый мем";
+$title = "MEM-TUBE: Добавить мем";
 require_once ROOT_DIR . '/inc/header.php';
+require_once ROOT_DIR . '/inc/connect.php';
+
+$cats = $db->query('SELECT * FROM category ORDER BY `id` DESC')->fetchAll();
+
+if (!$_SESSION['auth']) {
+    header("Location: error_page");
+} else {
 ?>
-<div class="content">
 
-    <?php require_once ROOT_DIR . '/inc/sidebar.php'; ?>
-    <main class="content__main">
+    <body class="text-center">
 
-        <? if ($_SESSION['auth']) : //if auth
+        <main class="form-signin">
+            <form enctype="multipart/form-data" action="/feedback_mem" method="POST">
 
-            $cats = $db->query('SELECT * FROM category ORDER BY `id` DESC')->fetchAll();
-        ?>
+                <h1 class="h3 mb-3 fw-normal">Добавить мем</h1>
 
-            <h2 class="content__main-heading"><?= $title ?></h2>
-
-            <form class="form" enctype="multipart/form-data" action="/feedback_mem" method="POST" autocomplete="off">
-
-                <div class="form__row">
-                    <label class="form__label" for="name">Название(200) <sup>*</sup></label>
-                    <input class="form__input" type="text" name="name" id="name" value="" maxlength="200" required placeholder="Введите название категории">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Введите логин" maxlength="200" required>
+                    <label for="floatingInput">Название</label>
                 </div>
-
-                <div class="form__row">
-                    <label class="form__label" for="desc">Описание(1000) <sup>*</sup></label>
-                    <input class="form__input" type="text" name="desc" id="desc" value="" maxlength="1000" required placeholder="Введите описание категории">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingPassword" name="desc" placeholder="Password" maxlength="500" required>
+                    <label for="floatingPassword">Описание</label>
                 </div>
-
-                <div class="form__row">
-                    <label class="form__label" for="cat">Выберите категорию<sup>*</sup></label>
-                    <select class="form__input form__input--select" id="cat" name="cat">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">Выберите категорию</label>
+                    <select class="form-select" id="inputGroupSelect01" name="cat">
                         <? foreach ($cats as $cat) : ?>
                             <option value="<?= $cat['id'] ?>"><?= $cat['name'] ?></option>
                         <? endforeach;  ?>
                     </select>
                 </div>
-
-                <div class="form__row">
-                    <label class="form__label" for="file">Файл<sup>*</sup></label>
-                    <div class="form__input-file">
-                        <input type="hidden" name="MAX_FILE_SIZE" value="20971520" />
-                        <input class="visually-hidden" type="file" name="file" id="file" value="" required>
-                        <label class="button button--transparent" for="file">
-                            <span>ФАЙЛ (MAX 20MB)</span>
-                        </label>
-                    </div>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="inputGroupFile02" name="userfile[]">
+                    <label class=" input-group-text" for="inputGroupFile02">Мем</label>
                 </div>
-
-
-                <div class="form__row form__row--controls">
-                    <p class="success-message">Разрешены файлы <b>.3gp</b> <b>.mp4</b> <b>.avi</b></p>
-                    <input class="button" type="submit" name="" value="Добавить">
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="inputGroupFile02" name="userfile[]">
+                    <label class=" input-group-text" for="inputGroupFile02">Постер</label>
                 </div>
-
+                <div class="alert alert-danger" role="alert">
+                    <p>Формат мема: <strong>mp4</strong> , <strong>gif</strong></p>
+                    <p>Постера - <strong>jpg</strong>, <strong>png</strong>.</p>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Добавить</button>
             </form>
+        </main>
 
-        <?php
-
-        else :
-            header("Location: error_page");
-        endif;
-
-        ?>
-    </main>
-</div>
-
-
-
-<?php require_once ROOT_DIR . '/inc/footer.php'; ?>
+    <?php
+}
+require_once ROOT_DIR . '/inc/footer.php'; ?>
