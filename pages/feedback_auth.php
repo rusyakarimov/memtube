@@ -8,6 +8,7 @@ $account = $db->query('SELECT * FROM users WHERE username = ? AND password = ?',
 
 if ($account['user_id'] == 1) {
     $_SESSION['status'] = 1;
+    //$db->query('UPDATE users SET user_status = ? WHERE user_id = ?', "1", $account['user_id'])->affectedRows();
 } else {
     $_SESSION['status'] = 2;
 }
@@ -15,6 +16,7 @@ if ($account['user_id'] == 1) {
 if ($account) {
     $_SESSION['name'] = $login;
     $_SESSION['auth'] = true; // пометка об авторизации
+    $_SESSION['pic'] = $account['profile_pic'];
     header("Location: /");
 } else {
     header("Location: error_page");

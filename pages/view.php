@@ -99,7 +99,7 @@ $sel = $db->query('SELECT * FROM files WHERE id = ?', $id)->fetchAll();
 
                     <div class="card">
                         <a href="/view?id=<?= $mem['id']; ?>">
-                            <img class="card-img-top" width="100%" height="225" src="./loads/<?= $item['pic']; ?>">
+                            <img class="card-img-top" width="100%" height="225" src="./loads/<?= $mem['pic']; ?>">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title"><?= $mem['name']; ?></h5>

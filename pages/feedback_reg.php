@@ -12,15 +12,18 @@ $account = $db->query('SELECT * FROM users WHERE username = ?', $login)->fetchAr
 
 if ($account['username'] == $login or $account['email'] == $email) { //такой юзер есть
     header("Location: error_page");
-} elseif (!preg_match("/^[a-zA-Z0-9]+$/", $login)) {
+} elseif (!preg_match("/^[a-zA-Z0-9]+$/", $login)) { //no match
+    header("Location: error_page");
+} elseif (!preg_match("/^[a-zA-Z0-9]+$/", $pass)) { //no match
     header("Location: error_page");
 } else {
-
-    $insert = $db->query('INSERT INTO users (username,password,email) VALUES (?,?,?)', $login, $pass, $email); //запись в бд
+    $user_pic = "./user_pic/user.png";
+    $insert = $db->query('INSERT INTO users (username,password,email,profile_pic) VALUES (?,?,?,?)', $login, $pass, $email, $user_pic); //запись в бд
     $insert->affectedRows();
 
     if ($insert) {
         $_SESSION['auth'] = true; // пометка об авторизации
+        $_SESSION['name'] = $login;
         header("Location: /");
     } else {
         header("Location: error_page");

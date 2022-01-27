@@ -14,6 +14,11 @@
     <!-- Custom styles for this template -->
     <link href="../css/signin.css" rel="stylesheet">
 </head>
+<?php
+if ($_SESSION['auth']) {
+    header("Location: /");
+}
+?>
 
 <body class="text-center">
 

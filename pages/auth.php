@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.88.1">
+    <meta name="description" content="<?= DESCRIPTION ?>">
+    <meta name="keywords" content="<?= KEYWORDS ?>">
     <title>Вход - MEM-TUBE</title>
 
     <!-- Bootstrap core CSS -->
@@ -32,6 +32,12 @@
     <!-- Custom styles for this template -->
     <link href="../css/signin.css" rel="stylesheet">
 </head>
+
+<?php
+if ($_SESSION['auth']) {
+    header("Location: /");
+}
+?>
 
 <body class="text-center">
 
