@@ -16,6 +16,7 @@ if (!$_SESSION['auth']) {
     <main class="form-signin">
         <form enctype="multipart/form-data" action="/feedback_mem" method="POST">
 
+
             <h1 class="h3 mb-3 fw-normal">Добавить мем</h1>
 
             <div class="form-floating">
@@ -34,17 +35,18 @@ if (!$_SESSION['auth']) {
                     <? endforeach;  ?>
                 </select>
             </div>
+            <!--<input type="hidden" name="MAX_FILE_SIZE" value="100000" />-->
             <div class="input-group mb-3">
-                <input type="file" class="form-control" id="inputGroupFile02" name="userfile[]">
+                <input data-bs-toggle="tooltip" data-bs-placement="top" title="MP4 или GIF" type="file" class="form-control" id="inputGroupFile02" name="userfile[]">
                 <label class=" input-group-text" for="inputGroupFile02">Мем</label>
             </div>
             <div class="input-group mb-3">
-                <input type="file" class="form-control" id="inputGroupFile02" name="userfile[]">
-                <label class=" input-group-text" for="inputGroupFile02">Постер</label>
+                <input data-bs-toggle="tooltip" data-bs-placement="top" title="JPG или PNG" type="file" class="form-control" id="inputGroupFile02" name="userfile[]">
+                <label data-bs-toggle="tooltip" data-bs-placement="top" title="Превью для мема" class="input-group-text" for="inputGroupFile02">Превью</label>
             </div>
             <div class="alert alert-danger" role="alert">
                 <p>Формат мема: <strong>mp4</strong> , <strong>gif</strong></p>
-                <p>Постера - <strong>jpg</strong>, <strong>png</strong>.</p>
+                <p>Превью - <strong>jpg</strong>, <strong>png</strong>.</p>
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit">Добавить</button>
         </form>

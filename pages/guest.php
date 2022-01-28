@@ -40,8 +40,8 @@
             <img class="mb-4" src="../img/logo.png" alt="" width="100" height="90">
           </a></h3>
         <nav class="nav nav-masthead justify-content-center float-md-end">
-          <a class="nav-link" href="/auth">Вход</a>
-          <a class="nav-link" href="/reg">Регистрация</a>
+          <a class="nav-link" href="/info">О сервисе</a>
+          <a class="nav-link" href="/faq">FAQ</a>
         </nav>
       </div>
     </header>

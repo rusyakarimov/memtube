@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<?= DESCRIPTION ?>">
     <meta name="keywords" content="<?= KEYWORDS ?>">
-    <title>Вход - MEM-TUBE</title>
+    <title>Восстановление пароля - MEM-TUBE</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -42,26 +42,29 @@ if ($_SESSION['auth']) {
 <body class="text-center">
 
     <main class="form-signin">
-        <form action="/feedback_auth" method="post">
+
+        <form action="/feedback_pr" method="post">
             <a href="/">
                 <img class="mb-4" src="../img/blackLogo.png" alt="" width="72" height="57">
             </a>
-            <h1 class="h3 mb-3 fw-normal">Вход</h1>
+            <h1 class="h3 mb-3 fw-normal">Восстановление пароля</h1>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Введите логин" maxlength="45" required>
-                <label for="floatingInput">Логин</label>
+                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="Введите EMAIL" maxlength="45" required>
+                <label for="floatingInput">Введите E-MAIL</label>
             </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" maxlength="100" required>
-                <label for="floatingPassword">Пароль</label>
+            <div class="alert alert-success" role="alert">
+                <p>Не забудьте проверить <strong>почту!</strong></p>
+                <p>Так-же письмо может попасть в папку <strong>спам!</strong></p>
             </div>
             <div class="checkbox mb-3">
                 <label>
-                    <a href="/recovery">Забыли пароль?</a>
+                    <a href="/auth">
+                        Назад
+                    </a>
                 </label>
             </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Восстановить пароль</button>
             <p class="mt-5 mb-3 text-muted">&copy; MEM-TUBE, 2022</p>
         </form>
     </main>

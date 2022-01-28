@@ -54,6 +54,7 @@ if ($_SESSION['auth']) :
                                 <div class="card text-dark bg-light mb-3">
                                     <a href="/view?id=<?= $item['id']; ?>">
                                         <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="./loads/<?= $item['pic']; ?>">
+
                                     </a>
                                     <div class="card-body">
                                         <h5 class="card-title"><?= $item['name']; ?></h5>
