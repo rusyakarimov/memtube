@@ -16,7 +16,6 @@ if (!$_SESSION['auth']) {
     <main class="form-signin">
         <form enctype="multipart/form-data" action="/feedback_mem" method="POST">
 
-
             <h1 class="h3 mb-3 fw-normal">Добавить мем</h1>
 
             <div class="form-floating">

@@ -17,13 +17,14 @@ if ($account['username'] == $login or $account['email'] == $email) { //тако�
 } elseif (!preg_match("/^[a-zA-Z0-9]+$/", $pass)) { //no match
     header("Location: error_page");
 } else {
-    $user_pic = "./user_pic/user.png";
-    $insert = $db->query('INSERT INTO users (username,password,email,profile_pic) VALUES (?,?,?,?)', $login, $pass, $email, $user_pic); //запись в бд
+    $user_pic = "user.png";
+    $insert = $db->query('INSERT INTO users (username,password,email,profile_pic,user_status) VALUES (?,?,?,?,?)', $login, $pass, $email, $user_pic, '2'); //запись в бд
     $insert->affectedRows();
 
     if ($insert) {
         $_SESSION['auth'] = true; // пометка об авторизации
         $_SESSION['name'] = $login;
+        $_SESSION['pic'] = $user_pic;
         header("Location: /main");
     } else {
         header("Location: error_page");

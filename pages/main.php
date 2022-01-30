@@ -13,15 +13,11 @@ if (isset($_GET['page'])) {
 
 $kol = 3;  // количество записей для вывода
 $art = ($page * $kol) - $kol;
-
-
 // Определяем все количество записей в таблице
 $total = $db->query('SELECT * FROM files')->numRows();
-
 // Количество страниц для пагинации
 $str_pag = ceil($total / $kol);
-
-
+//Запрос у базе
 $sel = $db->query('SELECT * FROM files ORDER BY id DESC LIMIT ?,?', $art, $kol)->fetchAll();
 ?>
 <?php
@@ -88,8 +84,9 @@ if ($_SESSION['auth']) :
                                                     <button type="button" class="btn btn-sm btn-outline-secondary">Смотреть</button>
                                                 </a>
                                                 <?php if ($_SESSION['status'] == 1) : ?>
-                                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ред.</button>
-
+                                                    <a href="/edit_mem?id=<?= $item['id']; ?>">
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary">Ред.</button>
+                                                    </a>
                                                     <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal">Удалить</button>
 
                                                     <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

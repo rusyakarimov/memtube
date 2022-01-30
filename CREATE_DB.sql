@@ -28,3 +28,13 @@ CREATE TABLE IF NOT EXISTS `files`(
  `pic` TEXT,
  PRIMARY KEY(`id`)
 ) DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `comments` (
+`id` INT(11) NOT NULL AUTO_INCREMENT ,
+`mem_id` INT(11),
+`author` VARCHAR(45) ,
+`message` TEXT,
+`date` TEXT,
+`time` TEXT,
+PRIMARY KEY (`id`)
+) DEFAULT CHARSET="utf8";
