@@ -6,7 +6,7 @@ $url = key($_GET);
 
 $r = new Router();
 /* pages */
-$r->addRoute("/", "main.php");
+$r->addRoute("/main", "main.php");
 $r->addRoute("/guest", "guest.php");
 $r->addRoute("/search", "search.php");
 $r->addRoute("/auth", "auth.php");
@@ -17,6 +17,7 @@ $r->addRoute("/cat", "categories.php");
 $r->addRoute("/recovery", "p_r.php");
 $r->addRoute("/info", "about.php");
 $r->addRoute("/faq", "faq.php");
+$r->addRoute("/ajax", "ajax.php");
 /* add */
 $r->addRoute("/addmem", "addmem.php");
 $r->addRoute("/newcat", "addcat.php");

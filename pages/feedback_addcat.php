@@ -14,7 +14,7 @@ if (!$num_rows) {
 
 
 if ($insert) {
-    header("Location: /");
+    header("Location: /main");
 } else {
     header("Location: error_page");
 }

@@ -1,7 +1,7 @@
 <?php require_once ROOT_DIR . '/inc/header.php'; ?>
 
 <div class="px-4 py-5 my-5 text-center">
-    <a href="/"><img class="d-block mx-auto mb-4" src="../img/blackLogo.png" alt="" width="72" height="57"></a>
+    <a href="/main"><img class="d-block mx-auto mb-4" src="../img/blackLogo.png" alt="" width="72" height="57"></a>
     <h1 class="display-5 fw-bold">MEM-TUBE</h1>
     <div class="col-lg-6 mx-auto">
         <p class="lead mb-4">Добро пожаловать на сервис обмена мемами! Здесь вы можете делиться своими мемами, комментировать чужие
@@ -12,7 +12,7 @@
                 <a href="/auth"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">Войти</button></a>
                 <a href="/reg"><button type="button" class="btn btn-outline-secondary btn-lg px-4">Зарегистрироваться</button></a>
             <?php else : ?>
-                <a href="/"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">На главную</button></a>
+                <a href="/main"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">На главную</button></a>
             <?php endif; ?>
         </div>
     </div>
@@ -27,7 +27,7 @@
                     <a href="/reg"><button type="button" class="btn btn-outline-secondary btn-lg px-4">Зарегистрироваться</button></a>
                     <a href="/auth"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">Войти</button></a>
                 <?php else : ?>
-                    <a href="/"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">На главную</button></a>
+                    <a href="/main"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">На главную</button></a>
                 <?php endif; ?>
             </div>
         </div>

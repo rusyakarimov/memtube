@@ -35,7 +35,7 @@
 
 <?php
 if ($_SESSION['auth']) {
-    header("Location: /");
+    header("Location: /main");
 }
 ?>
 
@@ -43,7 +43,7 @@ if ($_SESSION['auth']) {
 
     <main class="form-signin">
         <form action="/feedback_auth" method="post">
-            <a href="/">
+            <a href="/main">
                 <img class="mb-4" src="../img/blackLogo.png" alt="" width="72" height="57">
             </a>
             <h1 class="h3 mb-3 fw-normal">Вход</h1>

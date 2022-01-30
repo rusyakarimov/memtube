@@ -3,14 +3,32 @@ require_once ROOT_DIR . '/inc/config.php';
 $title = "MEM-TUBE - Скачайте и пользуйтесь!";
 require_once ROOT_DIR . '/inc/header.php';
 require_once ROOT_DIR . '/inc/connect.php';
-$sel = $db->query('SELECT * FROM files ORDER BY id DESC LIMIT 10')->fetchAll();
-$all_mems = $db->query('SELECT * FROM files')->numRows();
+
+// Текущая страница
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = 1;
+}
+
+$kol = 3;  // количество записей для вывода
+$art = ($page * $kol) - $kol;
+
+
+// Определяем все количество записей в таблице
+$total = $db->query('SELECT * FROM files')->numRows();
+
+// Количество страниц для пагинации
+$str_pag = ceil($total / $kol);
+
+
+$sel = $db->query('SELECT * FROM files ORDER BY id DESC LIMIT ?,?', $art, $kol)->fetchAll();
 ?>
 <?php
 if ($_SESSION['auth']) :
 ?>
     <?php
-    if ($all_mems <= 0) :
+    if ($total <= 0) :
     ?>
         <div class="modal modal-sheet position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSheet">
             <div class="modal-dialog" role="document">
@@ -101,21 +119,27 @@ if ($_SESSION['auth']) :
                                 </div>
                             </div>
                         <?php endforeach; ?>
+
                     </div>
                 </div>
             </div>
-
-            <!-- Pagination-->
+            <!-- Pagination -->
             <nav aria-label="Pagination">
                 <hr class="my-0" />
                 <ul class="pagination justify-content-center my-4">
-                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+                    <?php
+                    for ($i = 1; $i <= $str_pag; $i++) : ?>
+                        <?php
+                        if ($page == $i) : ?>
+                            <li class="page-item active" aria-current="page"><a class="page-link" href="?page=<?= $i; ?>"><?= $i; ?></a></li>
+                        <?php else : ?>
+                            <li class="page-item">
+                                <a class="page-link" href="?page=<?= $i; ?>"><?= $i; ?></a>
+                            </li>
+                        <?php
+                        endif;
+                        ?>
+                    <?php endfor; ?>
                 </ul>
             </nav>
 

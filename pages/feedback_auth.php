@@ -17,7 +17,7 @@ if ($account) {
     $_SESSION['name'] = $login;
     $_SESSION['auth'] = true; // пометка об авторизации
     $_SESSION['pic'] = $account['profile_pic'];
-    header("Location: /");
+    header("Location: /main");
 } else {
     header("Location: error_page");
 }

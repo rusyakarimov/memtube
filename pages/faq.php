@@ -55,7 +55,7 @@
             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <ul>
-                        <li>Размер файла не более 10МБ</li>
+                        <li>Размер файла мема не более <strong>10МБ</strong>, для превью не более <strong>2МБ<strong></li>
                         <li>Формат для мема: <strong>.mp4</strong> или <strong>.gif</strong></li>
                         <li>Формат для превью: <strong>.jpg</strong> или <strong>.png</strong></li>
                     </ul>

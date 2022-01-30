@@ -24,7 +24,7 @@ if ($account['username'] == $login or $account['email'] == $email) { //тако�
     if ($insert) {
         $_SESSION['auth'] = true; // пометка об авторизации
         $_SESSION['name'] = $login;
-        header("Location: /");
+        header("Location: /main");
     } else {
         header("Location: error_page");
     }

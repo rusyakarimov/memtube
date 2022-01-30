@@ -17,7 +17,7 @@ if ($_SESSION['auth'] && $_SESSION['status'] == 1) {
     if (unlink($dir . $file['file']) && unlink($dir . $file['pic'])) { //delete files from directory
         $query = $db->query('DELETE FROM files WHERE id = ?', $id);
         if ($query) {
-            header("Location: /");
+            header("Location: /main");
         } else {
             header("Location: error_page");
         }

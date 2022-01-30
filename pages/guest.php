@@ -36,7 +36,7 @@
   <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header class="mb-auto">
       <div>
-        <h3 class="float-md-start mb-0"><a href="/">
+        <h3 class="float-md-start mb-0"><a href="/main">
             <img class="mb-4" src="../img/logo.png" alt="" width="100" height="90">
           </a></h3>
         <nav class="nav nav-masthead justify-content-center float-md-end">
