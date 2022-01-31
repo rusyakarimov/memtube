@@ -5,13 +5,16 @@ if ($_SESSION['status'] == 1) {
 
     $name = htmlspecialchars(stripslashes($_POST['name']));
     $desc = htmlspecialchars(stripslashes($_POST['desc']));
+    $idCat = $_POST['cat'];
 
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
     } else {
         header("Location: error_page");
     }
-    $newMem = $db->query('UPDATE files SET `name` = ?, `desc` = ? WHERE `id` = ?', $name, $desc, $id)->affectedRows();
+
+    $newMem = $db->query('UPDATE files SET `name` = ?, `desc` = ?, `id_cat` = ? WHERE `id` = ?', $name, $desc, $idCat, $id)->affectedRows();
+
     if ($newMem) {
         header('Location: /view?id=' . $id);
     } else {

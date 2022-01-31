@@ -45,9 +45,11 @@ if ($_SESSION['auth']) {
                         <div class="ratio ratio-16x9">
                             <iframe src="./loads/<?= $item['file']; ?>" title="YouTube video" allowfullscreen></iframe>
                         </div>
+                        <hr>
                         <a href="./loads/<?= $item['file'] ?>" download>
                             <button class="w-100 btn btn-lg btn-primary" type="submit">Скачать(<?= $size; ?> Мб)</button>
                         </a>
+                        <hr>
                         <!-- Post content-->
                         <section class="mb-5">
                             <p class="fs-5 mb-4"><?= $item['desc']; ?></p>
@@ -60,7 +62,7 @@ if ($_SESSION['auth']) {
                             <div class="card-body">
                                 <!-- Comment form-->
                                 <form class="mb-4" action="/feedback_comment?id=<?= $item['id']; ?>&u=<?= $_SESSION['name']; ?>" method="POST">
-                                    <textarea class="form-control" rows="3" placeholder="А что вы об этом думаете?" name="message" required></textarea>
+                                    <textarea class="form-control" rows="3" placeholder="А что вы об этом думаете?" name="message" maxlength="500" required></textarea>
                                     <br>
                                     <input type="submit" class="btn btn-primary" value="Отправить" />
                                 </form>
@@ -83,6 +85,22 @@ if ($_SESSION['auth']) {
                                                 <div class="fw-bold"><?= $comment['author']; ?></div>
                                                 <?= $comment['message']; ?>
                                                 <p class="card-text"><small class="text-muted"><?= $comment['date'] . ' в ' . makeTime($comment['time']); ?></small></p>
+                                                <?php if ($_SESSION['name'] == $comment['author'] && $_SESSION['status'] !== 1) : ?>
+                                                    <a class="text-muted" href="/edit_comm?id=<?= $comment['id']; ?>&author=<?= $comment['author']; ?>">
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary">Редактировать</button>
+                                                    </a>
+                                                    <a class="text-muted" href="/del_comm?id=<?= $comment['id']; ?>&author=<?= $comment['author']; ?>">
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary">Удалить</button>
+                                                    </a>
+                                                <?php endif; ?>
+                                                <?php if ($_SESSION['status'] == 1) : ?>
+                                                    <a class="text-muted" href="/edit_comm?id=<?= $comment['id']; ?>">
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary">Редактировать</button>
+                                                    </a>
+                                                    <a class="text-muted" href="/del_comm?id=<?= $comment['id']; ?>">
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary">Удалить</button>
+                                                    </a>
+                                                <?php endif; ?>
                                             </div>
 
                                         </div>

@@ -9,10 +9,11 @@ if (isset($_GET['id'])) {
 } else {
     header("Location: error_page");
 }
+
 $sel = $db->query('SELECT * FROM files WHERE id = ?', $id)->fetchArray();
-if ($_SESSION['status'] !== 1) {
-    header("Location: error_page");
-} else {
+$cats = $db->query('SELECT * FROM category ORDER BY `id` DESC')->fetchAll();
+
+if ($_SESSION['auth'] && $_SESSION['status'] == 1) {
 ?>
 
     <body class="text-center">
@@ -30,10 +31,20 @@ if ($_SESSION['status'] !== 1) {
                     <input type="text" class="form-control" id="floatingPassword" name="desc" value="<?= $sel['desc']; ?>" placeholder="Password" maxlength="300" required>
                     <label for="floatingPassword">Описание</label>
                 </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">Выберите категорию</label>
+                    <select class="form-select" id="inputGroupSelect01" name="cat">
+                        <? foreach ($cats as $cat) : ?>
+                            <option value="<?= $cat['id'] ?>"><?= $cat['name'] ?></option>
+                        <? endforeach;  ?>
+                    </select>
+                </div>
                 <hr>
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Изменить</button>
             </form>
         </main>
     <?php
+} else {
+    header('Location: error_page');
 }
 require_once ROOT_DIR . '/inc/footer.php'; ?>

@@ -1,7 +1,7 @@
 <?php
 require_once ROOT_DIR . '/inc/connect.php';
 
-$login = $_POST['name'];
+$login = htmlspecialchars(stripslashes($_POST['name']));
 $pass = md5($_POST['password']);
 
 $account = $db->query('SELECT * FROM users WHERE username = ? AND password = ?',  $login, $pass)->fetchArray();
