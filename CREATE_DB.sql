@@ -38,3 +38,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 `time` TEXT,
 PRIMARY KEY (`id`)
 ) DEFAULT CHARSET="utf8";
+
+--CREATE FULLTEXT INDEX index_name ON tablename (COLUMNS); 
+--default-storage-engine = MYISAM
+

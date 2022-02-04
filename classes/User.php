@@ -1,34 +1,39 @@
 <?php
-	class User
+class User
+{
+	private $db;
+	private $username;
+	private $email;
+	private $is_auth = false;
+	private $id;
+
+	public function __construct($id)
 	{
-		private $id;
-		private $db;
+		session_start();
 
-        public $username;
-        public $email; 
+		//Создаем объект для работы с БД:
+		$this->db = new db;
 
-		public function __construct($id)
-		{
+		if (!empty($_SESSION['name']) && $_SESSION['auth']) {
+			$this->is_auth = true;
+			$this->username = $_SESSION['name'];
 			$this->id = $id;
-
-			//Создаем объект для работы с БД:
-			$this->db = new db;
 		}
-
-		public function getName()
-		{
-            return $this->db->query('SELECT username FROM users WHERE user_id = ?', $this->id)->fetchArray();
-		}
-
-		public function getEmail()
-		{
-			return $this->db->query('SELECT email FROM users WHERE user_id = ?', $this->id)->fetchArray();
-		}
-
-        public function getAll()
-        {
-            return $this->db->query('SELECT * FROM users WHERE user_id = ?', $this->id)->fetchArray();
-        }
-
 	}
-?>
+
+	public function getName()
+	{
+		$this->db->query('SELECT username FROM users WHERE user_id = ?', $this->id)->fetchArray();
+		return $this;
+	}
+
+	public function getEmail()
+	{
+		return $this->db->query('SELECT email FROM users WHERE user_id = ?', $this->id)->fetchArray();
+	}
+
+	public function getAll()
+	{
+		return $this->db->query('SELECT * FROM users WHERE user_id = ?', $this->id)->fetchArray();
+	}
+}

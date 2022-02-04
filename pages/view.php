@@ -78,7 +78,7 @@ if ($_SESSION['auth']) {
                                             $getUser = $db->query('SELECT * FROM users WHERE `username` = ?', $comment['author'])->fetchAll();
                                             foreach ($getUser as $user) : ?>
                                                 <div class="flex-shrink-0">
-                                                    <img class="rounded-circle" src="./user_pic/<?= $user['profile_pic']; ?>" alt="Лого пользователя" />
+                                                    <img class="rounded-circle" src="./user_pic/<?= $user['profile_pic']; ?>" width="80" height="80" alt="Лого пользователя" />
                                                 </div>
                                             <?php endforeach; ?>
                                             <div class="ms-3">
@@ -134,7 +134,10 @@ if ($_SESSION['auth']) {
                     </div>
 
                     <div class="card-header">Другие мемы</div>
-                    <?php $sel = $db->query('SELECT * FROM files ORDER BY id DESC LIMIT 3')->fetchAll();
+                    <?php
+                    $count = $db->query('SELECT * FROM files')->numRows();
+                    $start = rand(1, $count);
+                    $sel = $db->query('SELECT * FROM files ORDER BY id ASC LIMIT ?,?', $start, 3)->fetchAll();
                     foreach ($sel as $mem) : ?>
 
                         <div class="card">
