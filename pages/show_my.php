@@ -108,9 +108,9 @@ if (!$_SESSION['auth']) {
                                         <div class="d-flex justify-content-between align-items-center">
 
                                             <div class="btn-group">
-
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Ред.</button>
-
+                                                <a href="/edit_mem?id=<?= $item['id']; ?>&name=<?= $_SESSION['name']; ?>">
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary">Ред.</button>
+                                                </a>
                                                 <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modal">Удалить</button>
 
                                                 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -124,7 +124,7 @@ if (!$_SESSION['auth']) {
                                                                 <p class="mb-5">Вы действительно хотите удалить данную запись?</p>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <a href="#">
+                                                                <a href="/del_file?id=<?= $item['id']; ?>">
                                                                     <button type="button" class="btn btn-primary">Да, хочу</button>
                                                                 </a>
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>

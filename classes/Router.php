@@ -1,5 +1,5 @@
 <?php
-
+/* ROUTING FOR APP */
 class Router
 {
     private $pages = array();

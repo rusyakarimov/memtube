@@ -1,13 +1,19 @@
 <?php
-
+/* CREATE MODAL WINDOWS
+* $title - window title
+* $message - window message
+* $type - window type
+* $objectId - id of the requested object
+* $link - redirect link
+*/
 class Modal
 {
 
-    public $title;
-    public $message;
-    public $type;
-    public $objectId;
-    public $link;
+    private $title;
+    private $message;
+    private $type;
+    private $objectId;
+    private $link;
 
     public function __construct($title, $message, $type, $objectId, $link)
     {

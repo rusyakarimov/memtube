@@ -12,7 +12,7 @@ $file = $db->query('SELECT * FROM files WHERE id = ?', $id)->fetchArray();
 
 $dir = "./loads/";
 
-if ($_SESSION['auth'] && $_SESSION['status'] == 1) {
+if ($_SESSION['auth'] && $_SESSION['status'] == 1 or $file['user'] == $_SESSION['name']) {
 
     if (unlink($dir . $file['file']) && unlink($dir . $file['pic'])) { //delete files from directory
         $query = $db->query('DELETE FROM files WHERE id = ?', $id);

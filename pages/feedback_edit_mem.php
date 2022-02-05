@@ -1,7 +1,7 @@
 <?php
 require_once './inc/connect.php';
 
-if ($_SESSION['status'] == 1) {
+if ($_SESSION['status'] == 1 or $_SESSION['auth']) {
 
     $name = htmlspecialchars(stripslashes($_POST['name']));
     $desc = htmlspecialchars(stripslashes($_POST['desc']));

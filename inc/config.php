@@ -29,4 +29,4 @@ function my_autoloader($class)
 spl_autoload_register('my_autoloader');
 
 $db = new db(DBHOST, DBUSER, DBPASSWORD, DBNAME) or die("ERROR");
-$error = new Messages();
+$user = new user();

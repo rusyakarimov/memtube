@@ -10,10 +10,12 @@ if (isset($_GET['id'])) {
     header("Location: error_page");
 }
 
+$name = $_GET['name'];
+
 $sel = $db->query('SELECT * FROM files WHERE id = ?', $id)->fetchArray();
 $cats = $db->query('SELECT * FROM category ORDER BY `id` DESC')->fetchAll();
 
-if ($_SESSION['auth'] && $_SESSION['status'] == 1) {
+if ($_SESSION['auth'] && $_SESSION['status'] == 1 or $sel['user'] == $name) { //if author or admin
 ?>
 
     <body class="text-center">
@@ -43,6 +45,7 @@ if ($_SESSION['auth'] && $_SESSION['status'] == 1) {
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Изменить</button>
             </form>
         </main>
+
     <?php
 } else {
     header('Location: error_page');

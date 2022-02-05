@@ -27,5 +27,6 @@ if (!$_SESSION['auth'] or $_SESSION['status'] != 1) {
             <button class="w-100 btn btn-lg btn-primary" type="submit">Добавить</button>
         </form>
     </main>
-    <?php
-    require_once ROOT_DIR . '/inc/footer.php'; ?>
+</body>
+<?php
+require_once ROOT_DIR . '/inc/footer.php'; ?>

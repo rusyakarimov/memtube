@@ -1,4 +1,3 @@
 <?php
-session_unset();
-session_destroy();
-header("Location: /main");
+$user = new User();
+$user->logOut();
