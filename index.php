@@ -18,7 +18,7 @@ $r->addRoute("/info", "about.php");
 $r->addRoute("/faq", "faq.php");
 $r->addRoute("/profile", "profile.php");
 $r->addRoute("/show_my", "show_my.php");
-$r->addRoute("/", "guest.php");
+$r->addRoute("/", "main.php");
 /* add and edit*/
 $r->addRoute("/addmem", "addmem.php");
 $r->addRoute("/newcat", "addcat.php");
