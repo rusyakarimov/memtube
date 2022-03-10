@@ -126,10 +126,10 @@ else :
                 for ($i = 1; $i <= $str_pag; $i++) : ?>
                     <?php
                     if ($page == $i) : ?>
-                        <li class="page-item active" aria-current="page"><a class="page-link" href="?page=<?= $i; ?>"><?= $i; ?></a></li>
+                        <li class="page-item active" aria-current="page"><a class="page-link" href="main?page=<?= $i; ?>"><?= $i; ?></a></li>
                     <?php else : ?>
                         <li class="page-item">
-                            <a class="page-link" href="?page=<?= $i; ?>"><?= $i; ?></a>
+                            <a class="page-link" href="main?page=<?= $i; ?>"><?= $i; ?></a>
                         </li>
                     <?php
                     endif;
