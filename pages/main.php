@@ -1,8 +1,11 @@
 <?php
 require_once ROOT_DIR . '/inc/config.php';
-$title = "MEM-TUBE - Скачайте и пользуйтесь!";
-require_once ROOT_DIR . '/inc/header.php';
 require_once ROOT_DIR . '/inc/connect.php';
+$title = "MEM-TUBE - Здесь вы можете скачать различные мемы для монтажа видео!";
+$keywords = "Скачать мем, мемы для видео, мемы для монтажа видео, скачать мемы";
+$description = "Скачать мемы. На этой странице вы можете скачать мемы для монтажа видео.";
+require_once ROOT_DIR . '/inc/header.php';
+
 
 // Текущая страница
 if (isset($_GET['page'])) {

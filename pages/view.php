@@ -1,18 +1,19 @@
 <?php
 require_once ROOT_DIR . '/inc/config.php';
-$title = "Просмотр мема";
-require_once ROOT_DIR . '/inc/header.php';
 require_once ROOT_DIR . '/inc/connect.php';
-?>
-
-<?php
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 } else {
     header("Location: error_page");
 }
+$memTitle = $db->query('SELECT * FROM files WHERE id = ?', $id)->fetchArray();
+$title = "Скачать мем " . $memTitle['name'];
+$keywords = "Скачать мем, мем " . $memTitle['name'] . ", мемы для видео, скачать мемы";
+$description = "Скачать мем " . $memTitle['name'] . ". На этой странице вы можете скачать мем для монтажа видео " . $memTitle['name'];
+require_once ROOT_DIR . '/inc/header.php';
+?>
 
-
+<?php
 $count = $db->query('SELECT * FROM files WHERE id = ?', $id)->numRows();
 
 if ($count <= 0) {

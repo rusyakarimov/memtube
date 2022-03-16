@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="keywords" content="<?= KEYWORDS ?>" /><!-- Ключевые слова -->
-    <meta name="description" content="<?= DESCRIPTION ?>" /><!-- Описание сайта -->
+    <meta name="keywords" content="<?= $keywords ?>" /><!-- Ключевые слова -->
+    <meta name="description" content="<?= $description ?>" /><!-- Описание сайта -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $title; ?></title><!-- Заголовок -->
     <link rel="icon" href="../favicon.png" type="image/x-icon">
