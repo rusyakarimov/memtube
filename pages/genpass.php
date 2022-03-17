@@ -1,6 +1,8 @@
 <?php
 require_once ROOT_DIR . '/inc/config.php';
-$title = "Генератор паролей";
+$keywords = "mem-tube, скачать мемы, скачать видео, видео для монтажа";
+$description = "Скачать мемы дя монтажа видео. Здесь можно использовать генератор пароля сервиса MEM-TUBE";
+$title = "MEM-TUBE. Генератор паролей";
 require_once ROOT_DIR . '/inc/header.php';
 ?>
 <?php

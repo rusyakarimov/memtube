@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
 $memTitle = $db->query('SELECT * FROM files WHERE id = ?', $id)->fetchArray();
 $title = "Скачать мем " . $memTitle['name'];
 $keywords = "Скачать мем, мем " . $memTitle['name'] . ", мемы для видео, скачать мемы";
-$description = "Скачать мем " . $memTitle['name'] . ". На этой странице вы можете скачать мем для монтажа видео " . $memTitle['name'];
+$description = $memTitle['desc'] . ". На этой странице вы можете скачать мем для монтажа видео " . $memTitle['name'];
 require_once ROOT_DIR . '/inc/header.php';
 ?>
 

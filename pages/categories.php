@@ -1,8 +1,11 @@
 <?php
 require_once ROOT_DIR . '/inc/config.php';
-$title = "MEM-TUBE: Просмотр категории";
-require_once ROOT_DIR . '/inc/header.php';
 require_once ROOT_DIR . '/inc/connect.php';
+$title = "MEM-TUBE: Просмотр категории";
+$keywords = KEYWORDS;
+$description = DESCRIPTION;
+require_once ROOT_DIR . '/inc/header.php';
+
 ?>
 <?php
 

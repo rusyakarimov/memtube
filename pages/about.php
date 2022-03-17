@@ -1,4 +1,8 @@
-<?php require_once ROOT_DIR . '/inc/header.php'; ?>
+<?php
+$keywords = "mem-tube, скачать мемы, скачать видео, видео для монтажа";
+$description = "Скачать мемы дя монтажа видео. Информация о сервисе обмена мемами MEM-TUBE";
+$title = "MEM-TUBE. Информация о сервисе";
+require_once ROOT_DIR . '/inc/header.php'; ?>
 
 <div class="px-4 py-5 my-5 text-center">
     <a href="/main"><img class="d-block mx-auto mb-4" src="../img/blackLogo.png" alt="" width="72" height="57"></a>

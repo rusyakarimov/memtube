@@ -1,4 +1,8 @@
-<?php require_once ROOT_DIR . '/inc/header.php'; ?>
+<?php
+$keywords = KEYWORDS;
+$description = "Скачать мемы дя монтажа видео. Вопросы и ответы о сервисе обмена мемами MEM-TUBE";
+$title = "MEM-TUBE. вопросы и ответы о сервисе";
+require_once ROOT_DIR . '/inc/header.php'; ?>
 
 <main>
     <section class="py-5 text-center container">
