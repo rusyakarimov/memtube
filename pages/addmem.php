@@ -19,11 +19,11 @@ if (!$_SESSION['auth']) {
             <h1 class="h3 mb-3 fw-normal">Добавить мем</h1>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Введите логин" maxlength="200" required>
+                <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Название" maxlength="200" required>
                 <label for="floatingInput">Название</label>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingPassword" name="desc" placeholder="Password" maxlength="500" required>
+                <input type="text" class="form-control" id="floatingPassword" name="desc" placeholder="Описание" maxlength="500" required>
                 <label for="floatingPassword">Описание</label>
             </div>
             <div class="input-group mb-3">
@@ -34,7 +34,6 @@ if (!$_SESSION['auth']) {
                     <? endforeach;  ?>
                 </select>
             </div>
-
             <div class="input-group mb-3">
                 <input type="hidden" name="MAX_FILE_SIZE" value="10485760" /><!-- 10MB -->
                 <input data-bs-toggle="tooltip" data-bs-placement="top" title="MP4 или GIF" type="file" class="form-control" id="inputGroupFile02" name="userfile[]">

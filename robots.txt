@@ -1,0 +1,56 @@
+User-agent: Yandex
+# Наиболее часто встречаемые расширения документов
+Disallow: /*.pdf
+Disallow: /*.xls
+Disallow: /*.doc
+Disallow: /*.ppt
+Disallow: /*.txt
+Disallow: /edit_profile
+Disallow: /edit_mem
+# Требуется для правильно обработки ПС
+Allow: /css/*.css
+Allow: /js/*.js
+# Картинки
+Allow: /loads/*.jpg
+Allow: /loads/*.jpeg
+Allow: /loads/*.png
+Allow: /loads/*.gif
+Allow: /loads/*.mp4
+# Наиболее часто встречаемые метки для отслеживания рекламы
+Clean-param: utm_source&utm_medium&utm_term&utm_content&utm_campaign&yclid&gclid&_openstat&from /
+# При наличии фильтров и параметров добавляем и их в Clean-param
+Host: mem-tube.ru
+User-agent: Googlebot
+Disallow: /*.pdf
+Disallow: /*.xls
+Disallow: /*.doc
+Disallow: /*.ppt
+Disallow: /*.txt
+Disallow: /edit_profile
+Disallow: /edit_mem
+Allow: /css/*.css
+Allow: /js/*.js
+Allow: /loads/*.jpg
+Allow: /loads/*.jpeg
+Allow: /loads/*.png
+Allow: /loads/*.gif
+Allow: /loads/*.mp4
+# У google метки, фильтры и параметры закрываются в GSC-Сканирование-Параметры URL
+User-agent: *
+# Метки, фильтры и параметры для других ПС закрываем по классическому стандарту
+Disallow: /*utm
+Disallow: /*clid=
+Disallow: /*openstat
+Disallow: /*from
+Disallow: /*.pdf
+Disallow: /*.xls
+Disallow: /*.doc
+Disallow: /*.ppt
+Disallow: /*.txt
+Allow: /css/*.css
+Allow: /js/*.js
+Allow: /loads/*.jpg
+Allow: /loads/*.jpeg
+Allow: /loads/*.png
+Allow: /loads/*.gif
+Allow: /loads/*.mp4

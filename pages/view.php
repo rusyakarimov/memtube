@@ -37,6 +37,7 @@ $selComm = $db->query('SELECT * FROM comments WHERE mem_id = ? ORDER BY id DESC'
                     <header class="mb-4">
                         <!-- Post title-->
                         <h1 class="fw-bolder mb-1"><?= $item['name']; ?></h1>
+                        <img hidden class="bd-placeholder-img card-img-top" width="100%" height="225" src="./loads/<?= $item['pic']; ?>">
                         <!-- Post meta content-->
                         <div class="text-muted fst-italic mb-2">Добавил <strong><?= $item['user'] ?> </strong>, <?= $item['date'] . ' в ' . makeTime($item['time']); ?></div>
                         <!-- Post categories-->
