@@ -15,14 +15,14 @@ class Router
         $file_dir = $dir . $path;
 
         if ($path == "") {
-            require_once "404.php";
+            header("Location: ../404.php");
             die();
         }
 
         if (file_exists($file_dir)) {
             require_once $file_dir;
         } else {
-            require_once "404.php";
+            header("Location: ../404.php");
             die();
         }
     }

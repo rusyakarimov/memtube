@@ -1,8 +1,6 @@
 <?php
-require_once ROOT_DIR . '/inc/config.php';
 $title = "MEM-TUBE: Просмотр категории";
-require_once ROOT_DIR . '/inc/header.php';
-require_once ROOT_DIR . '/inc/connect.php';
+require_once './inc/header.php';
 ?>
 <main>
     <section class="py-5 text-center container">
@@ -16,4 +14,4 @@ require_once ROOT_DIR . '/inc/connect.php';
     </section>
 </main>
 
-<?php require_once ROOT_DIR . '/inc/footer.php'; ?>
+<?php require_once './inc/footer.php'; ?>
